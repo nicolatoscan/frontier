@@ -24,3 +24,4 @@ seep-system/target/
 seep-java2sdg/showGraph.sh
 .DS_Store
 seep-system/pom.xml
+*.jar

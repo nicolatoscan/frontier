@@ -34,6 +34,7 @@ public class Source implements StatelessOperator {
 			int value1 = 5;
 			int value2 = 15;
 			int value3 = 2;
+			System.out.println("\033[31m" + "SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE " + "\033[0m");
 			
 			DataTuple output = data.newTuple(value1, value2, value3);
 			

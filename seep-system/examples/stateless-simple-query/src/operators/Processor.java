@@ -28,7 +28,9 @@ public class Processor implements StatelessOperator{
 		value1 = value2+value3;
 		value2 = value2/value3;
 		value3 = value3*value3;
-		
+
+		System.out.println("\033[32m" + "PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR " + "\033[0m");
+
 		DataTuple outputTuple = data.setValues(value1, value2, value3);
 		api.send(outputTuple);
 	}

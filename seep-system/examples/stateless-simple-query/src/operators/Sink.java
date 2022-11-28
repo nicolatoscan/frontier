@@ -30,6 +30,9 @@ public class Sink implements StatelessOperator {
 	
 	public void processData(DataTuple dt) {
 		int value2 = dt.getInt("value2");
+
+		System.out.println("\033[34m" + "SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK " + "\033[0m");
+
 		// TIME CONTROL
 		c++;
 		if((System.currentTimeMillis() - init) > 1000){
