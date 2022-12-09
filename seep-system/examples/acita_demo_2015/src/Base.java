@@ -53,9 +53,13 @@ public class Base implements QueryComposer{
 		//TODO: Stream ids
 		
 		REPLICATION_FACTOR = Integer.parseInt(GLOBALS.valueFor("replicationFactor"));
+		// print REPLICATION_FACTOR in red
+		logger.info("\033[31m REPLICATION_FACTOR: " + REPLICATION_FACTOR + "\033[0m");
 		CHAIN_LENGTH = Integer.parseInt(GLOBALS.valueFor("chainLength"));
+		logger.info("\033[31m CHAIN_LENGTH: " + CHAIN_LENGTH + "\033[0m");
 		
 		String queryType = GLOBALS.valueFor("queryType");
+		logger.info("\033[31m queryType: " + queryType + "\033[0m");
 		if (queryType.equals("chain"))
 		{
 			return composeChain();

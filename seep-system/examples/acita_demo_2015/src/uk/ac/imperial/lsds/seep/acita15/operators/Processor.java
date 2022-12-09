@@ -36,6 +36,10 @@ public class Processor implements StatelessOperator{
 		
 		DataTuple outputTuple = data.setValues(tupleId, value, data.getLongArray("latencyBreakdown"));
 		processed++;
+
+		// print processed in green
+		System.out.println("\033[32m"+tupleId+"PROCESSOR \033[0m:");
+
 		if (processed == 1 || processed % 1000 == 0)
 		{
 			logger.info("Operator "+api.getOperatorId()+ " processed "+data.getLong("tupleId")+"->"+outputTuple.getLong("tupleId"));

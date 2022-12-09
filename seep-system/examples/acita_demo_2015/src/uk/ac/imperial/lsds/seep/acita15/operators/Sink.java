@@ -43,6 +43,7 @@ public class Sink implements StatelessOperator {
 	}
 	
 	public void processData(DataTuple dt) {
+
 		if (dt.getPayload().timestamp != dt.getLong("tupleId"))
 		{
 			throw new RuntimeException("Logic error: ts " + dt.getPayload().timestamp+ "!= tupleId "+dt.getLong("tupleId"));
@@ -87,14 +88,23 @@ public class Sink implements StatelessOperator {
 	private void recordTuple(DataTuple dt, int bytes)
 	{
 		long rxts = System.currentTimeMillis();
-		logger.info("SNK: Received tuple with cnt="+tuplesReceived 
-				+",id="+dt.getLong("tupleId")
-				+",ts="+dt.getPayload().timestamp
-				+",txts="+dt.getPayload().instrumentation_ts
-				+",rxts="+rxts
-				+",latency="+ (rxts - dt.getPayload().instrumentation_ts)
-				+",bytes="+ bytes
-				+",latencyBreakdown="+getLatencyBreakdown(dt, rxts-dt.getPayload().instrumentation_ts));
+
+		String[] values = dt.getString("value").split(",");
+		String processorId = "-1";
+		if (values.length > 1)
+			processorId = values[1];
+
+		System.out.println("PY,SINK,"
+				+ tuplesReceived //cnt
+				+","+dt.getLong("tupleId") //id
+				+","+dt.getPayload().timestamp //ts
+				+","+dt.getPayload().instrumentation_ts //txts
+				+","+rxts //rxts
+				+","+ (rxts - dt.getPayload().instrumentation_ts) //latency
+				+","+ bytes //bytes
+				+","+getLatencyBreakdown(dt, rxts-dt.getPayload().instrumentation_ts) //latencyBreakdown
+				+","+processorId //processorId
+				+",bloat");
 	}
 	
 	public void processData(List<DataTuple> arg0) {

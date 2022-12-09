@@ -42,7 +42,7 @@ public class Source implements StatelessOperator {
 	public void processData(DataTuple dt) {
 		Map<String, Integer> mapper = api.getDataMapper();
 		DataTuple data = new DataTuple(mapper, new TuplePayload());
-		logger.info("Source using mapper="+mapper);			
+		logger.info("Source using mapper="+mapper);
 		long tupleId = 0;
 		
 		boolean sendIndefinitely = Boolean.parseBoolean(GLOBALS.valueFor("sendIndefinitely"));
@@ -60,6 +60,8 @@ public class Source implements StatelessOperator {
 		final long[] latencyBreakdown = new long[0];
 		final long tStart = System.currentTimeMillis();
 		while(sendIndefinitely || tupleId < numTuples + warmUpTuples){
+			System.out.println("\033[31m" + "SOURCE" + "\033[0m");
+
 			if (tupleId == warmUpTuples)
 			{ 
 				long tWarmedUp = System.currentTimeMillis();
@@ -100,6 +102,8 @@ public class Source implements StatelessOperator {
 
 		while(!sendIndefinitely)
 		{
+			System.out.println("\033[31m" + "!sendIndefinitely SOURCE " + "\033[0m");
+
 			try {
 				Thread.sleep(5000);
 			} 

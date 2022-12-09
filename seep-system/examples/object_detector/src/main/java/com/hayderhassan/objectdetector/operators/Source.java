@@ -3,6 +3,7 @@ package com.hayderhassan.objectdetector.operators;
 import java.util.List;
 import java.util.Map;
 
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -30,6 +31,7 @@ public class Source implements StatelessOperator {
   private static int frameCount;
 
   public void setUp() {
+    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     System.out.println("Setting up source...");
     frameNumber = 0;
 
@@ -37,6 +39,8 @@ public class Source implements StatelessOperator {
     // this.video = new VideoCapture(0);
     
     // Use a video file
+    // print videoDir in red
+    System.out.println("\033[0;31m" + VIDEO_DIR + "london_traffic.mp4" + "\033[0m");
     this.video = new VideoCapture(VIDEO_DIR + "london_traffic.mp4");
     fps = (int) this.video.get(Videoio.CAP_PROP_FPS);
     frameCount = (int) this.video.get(Videoio.CAP_PROP_FRAME_COUNT);

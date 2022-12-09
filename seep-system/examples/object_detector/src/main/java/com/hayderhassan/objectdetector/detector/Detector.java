@@ -40,6 +40,9 @@ public class Detector {
     
     public Detector() {
         this.modelDir = System.getenv("PROJECT_ROOT") + "/frontier/seep-system/examples/object_detector/src/main/resources/model/";
+        // print modelDir in red
+        System.out.println("\033[0;31m" + this.modelDir + "\033[0m");
+
         String model = this.modelDir + "ssd_inception_v2_coco.pb";
         String config = this.modelDir + "ssd_inception_v2_coco.pbtxt";
         this.net = readNetFromTensorflow(model, config);
