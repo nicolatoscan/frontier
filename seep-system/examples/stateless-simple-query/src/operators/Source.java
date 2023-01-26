@@ -31,22 +31,22 @@ public class Source implements StatelessOperator {
 		DataTuple data = new DataTuple(mapper, new TuplePayload());
 		
 		while(true){
+			System.out.println("\033[31m" + "SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE " + "\033[0m");
 			int value1 = 5;
 			int value2 = 15;
 			int value3 = 2;
-			System.out.println("\033[31m" + "SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE SOURCE " + "\033[0m");
 			
 			DataTuple output = data.newTuple(value1, value2, value3);
 			
 			api.send(output);
 			
-			try {
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// try {
+			// 	Thread.sleep(1000);
+			// } 
+			// catch (InterruptedException e) {
+			// 	// TODO Auto-generated catch block
+			// 	e.printStackTrace();
+			// }
 		}
 	}
 	

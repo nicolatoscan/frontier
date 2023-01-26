@@ -53,6 +53,8 @@ public class Source implements StatelessOperator {
 		long frameRate = Long.parseLong(GLOBALS.valueFor("frameRate"));
 		long interFrameDelay = 1000 / frameRate;
 		logger.info("Source inter-frame delay="+interFrameDelay);
+		System.out.println("PY,SOURCE,numTples"+numTuples);
+		System.out.println("PY,SOURCE,warmUpTuples"+warmUpTuples);
 		
 		initialPause();
 
@@ -60,7 +62,7 @@ public class Source implements StatelessOperator {
 		final long[] latencyBreakdown = new long[0];
 		final long tStart = System.currentTimeMillis();
 		while(sendIndefinitely || tupleId < numTuples + warmUpTuples){
-			System.out.println("\033[31m" + "SOURCE" + "\033[0m");
+			System.out.println("PY,SOURCE,"+tupleId);
 
 			if (tupleId == warmUpTuples)
 			{ 
@@ -69,9 +71,9 @@ public class Source implements StatelessOperator {
 				logger.info("Source sending started at t="+tWarmedUp);
 				logger.info("Source sending started at t="+tWarmedUp);
 			}
-		
+			
 			schedulePause(tupleId);	
-
+			
 			DataTuple output = data.newTuple(tupleId, value, latencyBreakdown);
 			output.getPayload().timestamp = tupleId;
 			if (tupleId % 1000 == 0)

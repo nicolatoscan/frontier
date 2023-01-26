@@ -37,8 +37,13 @@ public class Processor implements StatelessOperator{
 
 	
 	public void processData(List<DataTuple> arg0) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("\033[32m" + "PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR PROCESSOR " + "\033[0m");
+
+		DataTuple data = arg0.get(0);
+		DataTuple outputTuple = data.setValues(1, 2, 3);
+		// api.send(outputTuple);
+		api.send_highestWeight(outputTuple);
+
 	}
 
 	

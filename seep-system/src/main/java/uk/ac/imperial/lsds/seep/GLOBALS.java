@@ -54,8 +54,10 @@ public class GLOBALS {
 			globals.put("useCoreAddr", globals.getProperty("useCoreAddr", ""));
 			globals.put("net-routing", globals.getProperty("net-routing", "OLSRETX"));
 			globals.put("replicationFactor", System.getProperty("replicationFactor", globals.getProperty("replicationFactor", "1")));
-			globals.put("chainLength", globals.getProperty("chainLength", "1"));
-			globals.put("queryType", globals.getProperty("queryType", "chain"));
+			globals.put("chainLength", System.getProperty("chainLength", globals.getProperty("chainLength", "1")));
+			globals.put("numTuples", System.getProperty("numTuples", globals.getProperty("numTuples", "1000")));
+			globals.put("warmUpTuples", System.getProperty("warmUpTuples", globals.getProperty("warmUpTuples", "1000")));
+			globals.put("queryType", System.getProperty("queryType", globals.getProperty("queryType", "chain")));
 			globals.put("sources", globals.getProperty("sources", "1"));
 			globals.put("sinks", globals.getProperty("sinks", "1"));
 			globals.put("fanin", globals.getProperty("fanin", "2"));

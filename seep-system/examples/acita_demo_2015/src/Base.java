@@ -57,8 +57,12 @@ public class Base implements QueryComposer{
 		logger.info("\033[31m REPLICATION_FACTOR: " + REPLICATION_FACTOR + "\033[0m");
 		CHAIN_LENGTH = Integer.parseInt(GLOBALS.valueFor("chainLength"));
 		logger.info("\033[31m CHAIN_LENGTH: " + CHAIN_LENGTH + "\033[0m");
-		
 		String queryType = GLOBALS.valueFor("queryType");
+		
+		System.out.println("PY,MASTER,REPLICATION_FACTOR:"+REPLICATION_FACTOR);
+		System.out.println("PY,MASTER,CHAIN_LENGTH:"+CHAIN_LENGTH);
+		System.out.println("PY,MASTER,queryType:"+queryType);
+		
 		logger.info("\033[31m queryType: " + queryType + "\033[0m");
 		if (queryType.equals("chain"))
 		{
@@ -731,6 +735,7 @@ public class Base implements QueryComposer{
 				pFields.add("tupleId");
 				pFields.add("value");
 				pFields.add("latencyBreakdown");
+				// Connectable p = QueryBuilder.newStatelessOperator(new Processor(), (i*1000)+j, pFields);
 				Connectable p = QueryBuilder.newStatelessOperator(new Processor(), (i*replicationFactor)+j, pFields);
 				ops.get(i).put(j, p);
 			}

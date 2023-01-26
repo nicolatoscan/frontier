@@ -27,16 +27,16 @@ public class Sink implements StatelessOperator {
 	int c = 0;
 	long init = 0;
 	int sec = 0;
-	
+
 	public void processData(DataTuple dt) {
-		int value2 = dt.getInt("value2");
+		int value1 = dt.getInt("value1");
 
-		System.out.println("\033[34m" + "SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK " + "\033[0m");
-
+		
 		// TIME CONTROL
 		c++;
 		if((System.currentTimeMillis() - init) > 1000){
 			System.out.println("SNK: "+sec+" "+c+" ");
+			System.out.println("\033[34m" + value1 + " SINK SINK " + "\033[0m");
 			c = 0;
 			sec++;
 			init = System.currentTimeMillis();
@@ -44,5 +44,13 @@ public class Sink implements StatelessOperator {
 	}
 	
 	public void processData(List<DataTuple> arg0) {
+		System.out.println("\033[34m" + "SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK SINK " + "\033[0m");
+		c++;
+		if((System.currentTimeMillis() - init) > 1000){
+			System.out.println("SNK: "+sec+" "+c+" ");
+			c = 0;
+			sec++;
+			init = System.currentTimeMillis();
+		}
 	}
 }
