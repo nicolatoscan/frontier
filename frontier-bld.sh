@@ -8,11 +8,13 @@ fi
 
 pushd seep-system/examples/acita_demo_2015 ; ant clean ; popd 
 pushd seep-system/examples/stateless-simple-query ; ant clean ; popd
+pushd seep-system/examples/speedtest ; ant clean ; popd
 pushd seep-system/examples/object_detector; ant clean ; popd
 #mvn -Djavacpp.platform=linux-armhf clean compile assembly:single 
 
 mkdir -p seep-system/examples/acita_demo_2015/lib 
 mkdir -p seep-system/examples/stateless-simple-query/lib 
+mkdir -p seep-system/examples/speedtest/lib 
 rm -f seep-system/examples/acita_demo_2015/lib/*.jar
 rm -rf seep-system/examples/object_detector/src/main/resources/images/detections/*.jpg	# TODO: move this.
 
@@ -31,6 +33,7 @@ mvn clean compile assembly:single
 
 cp seep-system/target/seep-system-0.0.1-SNAPSHOT.jar seep-system/examples/acita_demo_2015/lib 
 cp seep-system/target/seep-system-0.0.1-SNAPSHOT.jar seep-system/examples/stateless-simple-query/lib 
+cp seep-system/target/seep-system-0.0.1-SNAPSHOT.jar seep-system/examples/speedtest/lib 
 cp seep-system/target/seep-system-0.0.1-SNAPSHOT.jar seep-system/examples/object_detector/lib 
 
 mkdir -p seep-system/examples/acita_demo_2015/tmp
@@ -45,5 +48,6 @@ else
 fi
 
 pushd seep-system/examples/stateless-simple-query ; ant ; popd
+pushd seep-system/examples/speedtest ; ant ; popd
 pushd seep-system/examples/object_detector ; ant dist ; ant ; popd
 #./gradlew build -x test
