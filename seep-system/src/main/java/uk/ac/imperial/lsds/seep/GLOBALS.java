@@ -62,6 +62,10 @@ public class GLOBALS {
 			globals.put("sinks", globals.getProperty("sinks", "1"));
 			globals.put("fanin", globals.getProperty("fanin", "2"));
 			globals.put("sinkScaleFactor", globals.getProperty("sinkScaleFactor", "1"));
+			
+			globals.put("rateLimitSrc", System.getProperty("rateLimitSrc", globals.getProperty("rateLimitSrc", "false")));
+			globals.put("maxSrcTotalQueueSizeTuples", System.getProperty("maxSrcTotalQueueSizeTuples", globals.getProperty("maxSrcTotalQueueSizeTuples", "1")));
+			globals.put("maxTotalQueueSizeTuples", System.getProperty("maxTotalQueueSizeTuples", globals.getProperty("maxTotalQueueSizeTuples", "100")));
 
 			String sessionParamsPath = "../session_params.txt";
 			File f = new File(sessionParamsPath);	

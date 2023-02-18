@@ -89,10 +89,10 @@ public class Sink implements StatelessOperator {
 	{
 		long rxts = System.currentTimeMillis();
 
-		String[] values = dt.getString("value").split(",");
-		String processorId = "-1";
-		if (values.length > 1)
-			processorId = values[1];
+		// String[] values = dt.getString("value").split(",");
+		String processorId = dt.getString("value").substring(501);
+		// if (values.length > 1)
+			// processorId = values[1];
 
 		System.out.println("PY,SINK,"
 				+ tuplesReceived //cnt
@@ -119,19 +119,21 @@ public class Sink implements StatelessOperator {
 			long[] latencies = dt.getLongArray("latencyBreakdown");
 			String result = "";
 
-			long opLatency = 0;
-			long socketLatency = 0;
+			// long opLatency = 0;
+			// long socketLatency = 0;
 			logger.info("latency breakdown length="+latencies.length);
-			for (int i = 0; i < latencies.length; i=i+3)
+
+			for (int i = latencies.length; i >= 3; i=i-3)
 			{
-				opLatency += latencies[i];
-				socketLatency += Math.min(latencies[i+1], latencies[i+2]);
+				result += "|" + latencies[i-3];
+				// opLatency += latencies[i-3];
+				// socketLatency += Math.min(latencies[i-2], latencies[i-1]);
 				//result += ""+ latencies[i] + ";"+ latencies[i+1] + ";" + latencies[i+2];
 				//if (i < latencies.length - 1) { result += ":"; }
 			}	
 			//result += ""+opLatency+";"+socketLatency+";"+(100 * opLatency / latency);	
-			result += ""+opLatency+";"+socketLatency;	
-			return result;
+			// result += ""+opLatency+","+socketLatency;	
+			return result.substring(1);
 		}
 		else
 		{

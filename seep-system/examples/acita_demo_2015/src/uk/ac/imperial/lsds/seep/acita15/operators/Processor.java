@@ -32,13 +32,17 @@ public class Processor implements StatelessOperator{
 	public void processData(DataTuple data) {
 		long tProcessStart = System.currentTimeMillis();
 		long tupleId = data.getLong("tupleId");
-		String value = data.getString("value") + "," + api.getOperatorId();
-		
+		String value = data.getString("value");
+		int depth = Integer.parseInt(value.substring(0, 1));
+		value = (depth + 1) + value.substring(1)  + "|" + api.getOperatorId();
+
 		DataTuple outputTuple = data.setValues(tupleId, value, data.getLongArray("latencyBreakdown"));
 		processed++;
 
 		// print processed in green
-		System.out.println("\033[32m"+tupleId+"PROCESSOR \033[0m:");
+		// System.out.println("\033[32m"+tupleId+"PROCESSOR \033[0m:");
+		System.out.println("PY,PROCESSOR,"+processed+","+depth);
+
 
 		if (processed == 1 || processed % 1000 == 0)
 		{
@@ -66,7 +70,9 @@ public class Processor implements StatelessOperator{
 		for (DataTuple data : arg0)
 		{
 			long tupleId = data.getLong("tupleId");
-			String value = data.getString("value") + "," + api.getOperatorId();
+			String value = data.getString("value") + "|ppppppp" + api.getOperatorId();
+			int depth = Integer.parseInt(value.substring(0, 1)) + 1;
+			value = depth + value.substring(1);
 			
 			DataTuple outputTuple = data.setValues(tupleId, value);
 			processed++;

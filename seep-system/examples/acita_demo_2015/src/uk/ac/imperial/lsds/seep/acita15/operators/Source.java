@@ -72,7 +72,7 @@ public class Source implements StatelessOperator {
 				logger.info("Source sending started at t="+tWarmedUp);
 			}
 			
-			schedulePause(tupleId);	
+			// schedulePause(tupleId);	
 			
 			DataTuple output = data.newTuple(tupleId, value, latencyBreakdown);
 			output.getPayload().timestamp = tupleId;
@@ -126,7 +126,8 @@ public class Source implements StatelessOperator {
 	private String generateFrame(int tupleSizeChars)
 	{
 		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < tupleSizeChars; i++)
+		builder.append('0');
+		for (int i = 0; i < tupleSizeChars - 1; i++)
 		{
 			builder.append('x');
 		}
